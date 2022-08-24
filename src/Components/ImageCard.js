@@ -15,7 +15,7 @@ export const registerObserver = (ref, setShowImage) => {
 
 const ImageCard = React.forwardRef((props, ref) => {
   const { imgData, clickCb, extraClass } = props;
-  const { id, url, height, width, author, download_url } = imgData;
+  const { id, url, author, download_url } = imgData;
   const [showImage, setShowImage] = useState(false);
   const placeHolderRef = useRef(null);
 
@@ -28,7 +28,7 @@ const ImageCard = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} image-id={id} className={`image_card-cont ${extraClass}`}>
-      <a onClick={clickCb}>
+      <button onClick={clickCb} className="no_btn">
         <div className="image_card-img">
           {showImage ? <img src={download_url} alt={url} /> : <span ref={placeHolderRef} />}
         </div>
@@ -38,7 +38,7 @@ const ImageCard = React.forwardRef((props, ref) => {
           </h6>
           <span className="img-desc">cardekho.com</span>
         </div>
-      </a>
+      </button>
     </div>
   );
 });

@@ -1,6 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
-import ImageContainer from './Components/ImageContainer';
+import logo from "./logo.svg";
+import "./App.css";
+import ImageContainer from "./Components/ImageContainer";
 
 function App() {
   return (

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import ImageCard from "./ImageCard";
-import ImageDetailOverlay from "./IMageDetailOverlay";
 import useIntersection from "../hooks/useIntersection";
+const ImageDetailOverlay = lazy(() => import("./IMageDetailOverlay"))
+
 
 const ImageContainer = () => {
   const loader = useRef(null);
   const pagination = useRef({
     page: 0,
-    limit: 50,
+    limit: 20,
     isNextPageData: true,
   });
 
@@ -83,9 +84,11 @@ const ImageContainer = () => {
         </div>
       </div>
       {showDetail && (
-        <div className="section_detail">
-          <ImageDetailOverlay imageDetail={showDetail} close={closeOverlay} />
-        </div>
+        <Suspense fallback={<div>Loading</div>}>
+          <div className="section_detail">
+            <ImageDetailOverlay imageDetail={showDetail} close={closeOverlay} />
+          </div>
+        </Suspense>
       )}
     </main>
   );
